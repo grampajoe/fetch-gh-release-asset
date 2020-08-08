@@ -26,6 +26,12 @@ echo "Version: $INPUT_VERSION"
 echo "File: $INPUT_FILE"
 
 RELEASE_DATA=$(curl -u $TOKEN: $GITHUB_API_URL/repos/$REPO/releases/${INPUT_VERSION})
+
+if [[ "$?" -ne "0" ]]; then
+  echo 'Failed to fetch release data'
+  exit 1
+fi
+
 echo "$RELEASE_DATA"
 
 ASSET_ID=$(echo $RELEASE_DATA | jq -r ".assets | map(select(.name == \"${INPUT_FILE}\"))[0].id")
