@@ -25,8 +25,7 @@ echo "Repo: $REPO"
 echo "Version: $INPUT_VERSION"
 echo "File: $INPUT_FILE"
 
-API_URL="https://$TOKEN:@api.github.com/repos/$REPO"
-RELEASE_DATA=$(curl $API_URL/releases/${INPUT_VERSION})
+RELEASE_DATA=$(curl -u $TOKEN: $GITHUB_API_URL/repos/$REPO/releases/${INPUT_VERSION})
 echo "$RELEASE_DATA"
 
 ASSET_ID=$(echo $RELEASE_DATA | jq -r ".assets | map(select(.name == \"${INPUT_FILE}\"))[0].id")
