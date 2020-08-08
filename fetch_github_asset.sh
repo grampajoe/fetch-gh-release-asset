@@ -48,8 +48,9 @@ fi
 curl \
   -J \
   -L \
+  -u :$TOKEN \
   -H "Accept: application/octet-stream" \
-  "$API_URL/releases/assets/$ASSET_ID" \
+  "$GITHUB_API_URL/repos/$REPO/releases/assets/$ASSET_ID" \
   -o ${INPUT_FILE}
 
 echo "::set-output name=version::$TAG_VERSION"
