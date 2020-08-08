@@ -25,7 +25,7 @@ echo "Repo: $REPO"
 echo "Version: $INPUT_VERSION"
 echo "File: $INPUT_FILE"
 
-RELEASE_DATA=$(curl -u $TOKEN: $GITHUB_API_URL/repos/$REPO/releases/${INPUT_VERSION})
+RELEASE_DATA=$(curl -u :$TOKEN $GITHUB_API_URL/repos/$REPO/releases/${INPUT_VERSION})
 
 if [[ "$?" -ne "0" ]]; then
   echo 'Failed to fetch release data'
